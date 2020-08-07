@@ -1,7 +1,7 @@
 # cam
 
-`cam` is a high level package built on top of [gocv](https://gocv.io/) for working with the camera and its frames.
-It has an api familiar to `net/http` and brings a set of middlewares for frame handling.
+`cam` is a package built on top of [gocv](https://gocv.io/) for working with the camera and its frames.
+It has a similar api to `net/http` and brings a set of middlewares for the frame handling.
 
 ## Installation
 
