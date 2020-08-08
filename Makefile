@@ -1,7 +1,9 @@
-all: run
+.PHONY: all example test
 
-build:
-	go build -o cam-example example/main.go 
+all: example
 
-run:
-	go run -race example/main.go
+example:
+	go run -race examples/simple/main.go 
+
+test:
+	go test . ./middlewares/...
