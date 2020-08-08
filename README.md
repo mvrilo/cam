@@ -8,7 +8,7 @@ It has a similar api to `net/http` and `gliderlabs/ssh` plus a set of builtin mi
 
 ## Dependencies
 
-OpenCV is the only dependency. You can see instructions for installation on any platform on [the gocv site](https://gocv.io/getting-started/).
+[OpenCV](https://docs.opencv.org/4.4.0/) is the only dependency. You can see instructions for installation on [the opencv docs](https://docs.opencv.org/4.4.0/df/d65/tutorial_table_of_content_introduction.html) and [in the gocv page](https://gocv.io/getting-started/).
 
 ## Installation
 
