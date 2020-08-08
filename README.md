@@ -1,7 +1,10 @@
 # cam
 
-`cam` is a package built on top of [gocv](https://gocv.io/) for working with the camera and its frames.
-It has a similar api to `net/http` and brings a set of middlewares for the frame handling.
+[![GoDoc](https://godoc.org/github.com/mvrilo/cam?status.svg)](https://godoc.org/github.com/mvrilo/cam)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mvrilo/cam)](https://goreportcard.com/report/github.com/mvrilo/cam)
+
+`cam` is a package built on top of [gocv](https://gocv.io/) that provides a high level api for working with the camera frames.
+It has a similar api to `net/http` and `gliderlabs/ssh` plus a set of builtin middlewares for easy composition.
 
 ## Installation
 
@@ -11,7 +14,7 @@ go get github.com/mvrilo/cam
 
 ## Example
 
-```
+```go
 package main
 
 import (
@@ -21,6 +24,7 @@ import (
 
 	"github.com/mvrilo/cam"
 	"github.com/mvrilo/cam/middlewares/recorder"
+	"github.com/mvrilo/cam/middlewares/window"
 	"gocv.io/x/gocv"
 )
 
@@ -30,7 +34,10 @@ func main() {
 		blue := color.RGBA{0, 0, 255, 0}
 		gocv.PutText(&f.Data, text, image.Pt(200, 200), gocv.FontHersheyPlain, 10, blue, 8)
 	})
-	cam.Use(recorder.New("./out.avi"))
+	cam.Use(
+		window.New("Hello world, Cam!"),
+		recorder.New("./out.avi"),
+	)
 	log.Fatal(cam.ListenAndServe(0, nil))
 }
 ```
