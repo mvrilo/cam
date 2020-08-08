@@ -6,6 +6,10 @@
 `cam` is a package built on top of [gocv](https://gocv.io/) that provides a high level api for working with the camera frames.
 It has a similar api to `net/http` and `gliderlabs/ssh` plus a set of builtin middlewares for easy composition.
 
+## Dependencies
+
+OpenCV is the only dependency. You can see instructions for installation on any platform on [the gocv site](https://gocv.io/getting-started/).
+
 ## Installation
 
 ```
