@@ -3,8 +3,8 @@
 [![GoDoc](https://godoc.org/github.com/mvrilo/cam?status.svg)](https://godoc.org/github.com/mvrilo/cam)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mvrilo/cam)](https://goreportcard.com/report/github.com/mvrilo/cam)
 
-`cam` is a package built on top of [gocv](https://gocv.io/) that provides a high level api for working with the camera frames.
-It has a similar api to `net/http` and `gliderlabs/ssh` plus a set of builtin middlewares for easy composition.
+`cam` is a package for Go built on top of [gocv](https://gocv.io/) and [OpenCV](https://opencv.org/) providing a high level api for working with the camera frames.
+It has a similar api to `net/http` and a set of builtin middlewares for easy composition or tooling.
 
 ## Dependencies
 
