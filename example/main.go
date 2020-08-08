@@ -13,6 +13,7 @@ import (
 	"github.com/mvrilo/cam/middlewares/snapshot"
 	"github.com/mvrilo/cam/middlewares/streamer"
 	"github.com/mvrilo/cam/middlewares/wait"
+	"github.com/mvrilo/cam/middlewares/window"
 	"gocv.io/x/gocv"
 )
 
@@ -28,6 +29,7 @@ func main() {
 	streaming := streamer.New("/cam.mjpg")
 	cam.Use(
 		streaming,
+		window.New("cam example"),
 		snapshot.New("./out.jpg"),
 		recorder.New("./out.avi"),
 		wait.New(100*time.Millisecond),
