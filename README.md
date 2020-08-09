@@ -3,12 +3,12 @@
 [![GoDoc](https://godoc.org/github.com/mvrilo/cam?status.svg)](https://godoc.org/github.com/mvrilo/cam)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mvrilo/cam)](https://goreportcard.com/report/github.com/mvrilo/cam)
 
-`cam` is a package for Go built on top of [gocv](https://gocv.io/) and [OpenCV](https://opencv.org/) providing a high level api for working with the camera frames.
+`cam` is a package for Go built on top of [GoCV](https://gocv.io/) and [OpenCV](https://opencv.org/) providing a high level api for working with the camera frames.
 It has a similar api to `net/http` and a set of builtin middlewares for easy composition or tooling.
 
 ## Dependencies
 
-[OpenCV](https://docs.opencv.org/4.4.0/) is the only dependency. You can see instructions for installation on [the opencv docs](https://docs.opencv.org/4.4.0/df/d65/tutorial_table_of_content_introduction.html) and [in the gocv page](https://gocv.io/getting-started/).
+[OpenCV](https://docs.opencv.org/4.4.0/) is the only dependency. You can see instructions for installation on [the opencv docs](https://docs.opencv.org/4.4.0/df/d65/tutorial_table_of_content_introduction.html) and [in the GoCV page](https://gocv.io/getting-started/).
 
 ## Installation
 
