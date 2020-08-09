@@ -17,19 +17,6 @@ type Camera interface {
 	Close() error
 }
 
-// Frame wraps the gocv.Mat and its index
-type Frame struct {
-	Data  gocv.Mat
-	Index int
-}
-
-func newFrame(index int) *Frame {
-	return &Frame{
-		Index: index,
-		Data:  gocv.NewMat(),
-	}
-}
-
 type HandlerFunc func(*Frame)
 
 func (h HandlerFunc) Handle(frame *Frame) {
