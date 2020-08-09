@@ -6,13 +6,14 @@ import (
 	"gocv.io/x/gocv"
 )
 
-// Frame wraps the gocv.Mat and its index
+// Frame represents a camera frame wrapped up as gocv.Mat along with its index and a key-value store
 type Frame struct {
 	*Store
 	Data  gocv.Mat
 	Index int
 }
 
+// Store is a concurrency-safe map[string]interface{} implemntation
 type Store struct {
 	data map[string]interface{}
 	mu   *sync.RWMutex
@@ -25,6 +26,7 @@ func newStore() *Store {
 	}
 }
 
+// Get gets a value as interface{} from its store
 func (s *Store) Get(name string) interface{} {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
@@ -34,6 +36,7 @@ func (s *Store) Get(name string) interface{} {
 	return nil
 }
 
+// Set sets a value on its store for a given name
 func (s *Store) Set(name string, val interface{}) {
 	s.mu.Lock()
 	s.data[name] = val
