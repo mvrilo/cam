@@ -46,7 +46,7 @@ func main() {
 }
 ```
 
-See [here](https://gocv.io/writing-code/more-examples/) for more examples and usage of gocv.
+For usage and examples of GoCV, [see here](https://gocv.io/writing-code/more-examples/).
 
 ## Author
 
