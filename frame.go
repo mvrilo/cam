@@ -43,9 +43,9 @@ func (s *Store) Set(name string, val interface{}) {
 	s.mu.Unlock()
 }
 
-func newFrame(index int) *Frame {
+func newFrame() *Frame {
 	return &Frame{
-		Index: index,
+		Index: 0,
 		Data:  gocv.NewMat(),
 		Store: newStore(),
 	}

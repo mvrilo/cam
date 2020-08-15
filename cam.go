@@ -70,14 +70,14 @@ func (c *Cam) handleFrame(frame *Frame) error {
 }
 
 func (c *Cam) Serve() error {
-	var index int
+	frame := newFrame()
+	defer frame.Data.Close()
 	for {
-		frame := newFrame(index)
 		err := c.handleFrame(frame)
 		if err != nil {
 			return err
 		}
-		index++
+		frame.Index++
 	}
 }
 
