@@ -38,12 +38,11 @@ func main() {
 	cam.Handle(func(f cam.Frame) {
 		text := "hello world"
 		blue := color.RGBA{0, 0, 255, 0}
-		data := f.Data()
-		mat, ok := data.(gocv.Mat)
+		data, ok := f.Data().(gocv.Mat)
 		if !ok {
 			return
 		}
-		gocv.PutText(&mat, text, image.Pt(200, 200), gocv.FontHersheyPlain, 10, blue, 8)
+		gocv.PutText(&data, text, image.Pt(200, 200), gocv.FontHersheyPlain, 10, blue, 8)
 	})
 	cam.Use(window.New("cam example"))
 	log.Fatal(cam.ListenAndServe(0, nil))
@@ -55,7 +54,3 @@ func main() {
 ## Author
 
 Murilo Santana <<mvrilo@gmail.com>>
-
-## License
-
-MIT
