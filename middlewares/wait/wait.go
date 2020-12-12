@@ -12,6 +12,6 @@ func New(t time.Duration) Wait {
 	return Wait(t)
 }
 
-func (t Wait) Handle(f *cam.Frame) {
+func (t Wait) Handle(f cam.Frame) {
 	time.Sleep(time.Duration(t))
 }

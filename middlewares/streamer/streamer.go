@@ -42,15 +42,19 @@ func (s *Streamer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *Streamer) Handle(f *cam.Frame) {
+func (s *Streamer) Handle(f cam.Frame) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	body, err := gocv.IMEncodeWithParams(gocv.JPEGFileExt, f.Data, []int{gocv.IMWriteJpegQuality, 70})
-	if err != nil {
-		log.Println(err)
-		return
+	frameData := f.Data()
+	switch data := frameData.(type) {
+	case gocv.Mat:
+		body, err := gocv.IMEncodeWithParams(gocv.JPEGFileExt, data, []int{gocv.IMWriteJpegQuality, 70})
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		s.frame = body
+	default:
 	}
-
-	s.frame = body
 }

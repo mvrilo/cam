@@ -25,14 +25,14 @@ func New(output string) *Recorder {
 	}
 }
 
-func (r *Recorder) Handle(f *cam.Frame) {
+func (r *Recorder) handleGocv(data gocv.Mat) {
 	if !r.loaded {
 		vw, err := gocv.VideoWriterFile(
 			r.Output,
 			r.Codec,
 			float64(r.FPS),
-			f.Data.Cols(),
-			f.Data.Rows(),
+			data.Cols(),
+			data.Rows(),
 			true,
 		)
 		if err != nil {
@@ -49,9 +49,18 @@ func (r *Recorder) Handle(f *cam.Frame) {
 			return
 		}
 
-		err := r.vw.Write(f.Data)
+		err := r.vw.Write(data)
 		if err != nil {
 			log.Println(errors.Wrap(err, "recorder"))
 		}
 	}()
+}
+
+func (r *Recorder) Handle(f cam.Frame) {
+	frameData := f.Data()
+	switch data := frameData.(type) {
+	case gocv.Mat:
+		r.handleGocv(data)
+	default:
+	}
 }

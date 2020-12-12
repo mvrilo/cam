@@ -3,8 +3,7 @@
 [![GoDoc](https://godoc.org/github.com/mvrilo/cam?status.svg)](https://godoc.org/github.com/mvrilo/cam)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mvrilo/cam)](https://goreportcard.com/report/github.com/mvrilo/cam)
 
-`cam` is a package for Go built on top of [GoCV](https://gocv.io/) and [OpenCV](https://opencv.org/) providing a high level api for working with the camera frames.
-It has a similar api to `net/http` and a set of builtin middlewares for easy composition or tooling.
+`cam` is a package for Go that provides a high level api (similar to `net/http`) and a small set of plugins for working with camera frames. For the device communication, implementing the `Device interface`, we use [GoCV](https://gocv.io/) and [OpenCV](https://opencv.org/), more can be easily added. Contributions are welcomed.
 
 ## Dependencies
 
@@ -27,21 +26,22 @@ import (
 	"log"
 
 	"github.com/mvrilo/cam"
-	"github.com/mvrilo/cam/middlewares/recorder"
 	"github.com/mvrilo/cam/middlewares/window"
 	"gocv.io/x/gocv"
+
+	_ "github.com/mvrilo/cam/gocv"
 )
 
 func main() {
-	cam.Handle(func(f *cam.Frame) {
+	cam.Handle(func(f cam.Frame) {
 		text := "hello world"
 		blue := color.RGBA{0, 0, 255, 0}
-		gocv.PutText(&f.Data, text, image.Pt(200, 200), gocv.FontHersheyPlain, 10, blue, 8)
+		data := f.Data()
+		if mat, ok := data.(gocv.Mat); ok {
+            gocv.PutText(&mat, text, image.Pt(200, 200), gocv.FontHersheyPlain, 10, blue, 8)
+        }
 	})
-	cam.Use(
-		window.New("Hello world, Cam!"),
-		recorder.New("./out.avi"),
-	)
+	cam.Use(window.New("cam example"))
 	log.Fatal(cam.ListenAndServe(0, nil))
 }
 ```

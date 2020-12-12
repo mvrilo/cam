@@ -1,6 +1,8 @@
 package classifierdetect
 
 import (
+	"image"
+
 	"github.com/mvrilo/cam"
 	"gocv.io/x/gocv"
 )
@@ -22,7 +24,12 @@ func New(storeKey, file string) *ClassifierDetect {
 	}
 }
 
-func (fd *ClassifierDetect) Handle(f *cam.Frame) {
-	rects := fd.Classifier.DetectMultiScale(f.Data)
-	f.Store.Set(fd.Key, rects)
+func (fd *ClassifierDetect) Handle(f cam.Frame) {
+	var rects []image.Rectangle
+	frameData := f.Data()
+	switch data := frameData.(type) {
+	case gocv.Mat:
+		rects = fd.Classifier.DetectMultiScale(data)
+	}
+	f.Set(fd.Key, rects)
 }

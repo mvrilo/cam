@@ -13,6 +13,11 @@ func New(output string) *Snapshot {
 	return &Snapshot{output}
 }
 
-func (s *Snapshot) Handle(f *cam.Frame) {
-	go gocv.IMWrite(s.Output, f.Data)
+func (s *Snapshot) Handle(f cam.Frame) {
+	frameData := f.Data()
+	switch data := frameData.(type) {
+	case gocv.Mat:
+		go gocv.IMWrite(s.Output, data)
+	default:
+	}
 }

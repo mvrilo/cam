@@ -15,7 +15,12 @@ func New(name string) *Window {
 	}
 }
 
-func (w *Window) Handle(f *cam.Frame) {
-	w.Window.IMShow(f.Data)
-	w.Window.WaitKey(1)
+func (w *Window) Handle(f cam.Frame) {
+	data := f.Data()
+	switch mat := data.(type) {
+	case gocv.Mat:
+		w.Window.IMShow(mat)
+		w.Window.WaitKey(1)
+	default:
+	}
 }
