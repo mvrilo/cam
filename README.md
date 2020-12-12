@@ -35,7 +35,6 @@ import (
 
 func main() {
 	cam.Use(pixelize.New(32))
-
 	cam.Handle(func(f cam.Frame) {
 		text := "hello world"
 		blue := color.RGBA{0, 0, 255, 0}
@@ -46,9 +45,7 @@ func main() {
 		}
 		gocv.PutText(&mat, text, image.Pt(200, 200), gocv.FontHersheyPlain, 10, blue, 8)
 	})
-
 	cam.Use(window.New("cam example"))
-
 	log.Fatal(cam.ListenAndServe(0, nil))
 }
 ```

@@ -1,9 +1,9 @@
-.PHONY: all example test
-
-all: example
+.PHONY: example test
 
 example:
 	go run -race examples/middlewares/main.go
 
 test:
-	go test . ./middlewares/...
+	go fmt ./...
+	go vet ./...
+	go test ./...
