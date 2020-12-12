@@ -7,7 +7,7 @@
 
 ## Dependencies
 
-[OpenCV](https://docs.opencv.org/4.4.0/) is the only dependency. You can see instructions for installation on [the opencv docs](https://docs.opencv.org/4.4.0/df/d65/tutorial_table_of_content_introduction.html) and [in the GoCV page](https://gocv.io/getting-started/).
+- For the `gocv` device implementation you will only need [OpenCV](https://docs.opencv.org/4.4.0/) installed. You can see instructions for installation on [the opencv docs](https://docs.opencv.org/4.4.0/df/d65/tutorial_table_of_content_introduction.html) and [in the GoCV page](https://gocv.io/getting-started/).
 
 ## Installation
 
